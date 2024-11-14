@@ -4,6 +4,8 @@ import SkillCard from '../components/SkillCard';
 import ProjectCard from '../components/ProjectCard';
 import TypedText from '../components/TypedText';
 import WolfLogo from '../components/WolfLogo';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 
@@ -13,16 +15,19 @@ const Index = () => {
       title: 'Laravel',
       level: 90,
       description: 'Expert in Laravel framework with extensive experience in building scalable applications',
+      icon: '/icons/laravel.svg'
     },
     {
       title: 'CI/CD Pipeline',
       level: 85,
       description: 'Proficient in setting up and maintaining CI/CD pipelines using Jenkins, GitLab CI, and GitHub Actions',
+      icon: '/icons/cicd.svg'
     },
     {
       title: 'DevOps',
       level: 80,
       description: 'Experienced in Docker, Kubernetes, and cloud platforms (AWS, GCP)',
+      icon: '/icons/devops.svg'
     },
   ];
 
@@ -41,6 +46,20 @@ const Index = () => {
       imageUrl: '/placeholder.svg',
       githubUrl: 'https://github.com',
     },
+    {
+      title: 'Cloud Infrastructure Management',
+      description: 'Automated cloud infrastructure management system',
+      technologies: ['Terraform', 'AWS', 'Python', 'Ansible'],
+      imageUrl: '/placeholder.svg',
+      githubUrl: 'https://github.com',
+    },
+    {
+      title: 'Monitoring Dashboard',
+      description: 'Real-time monitoring dashboard for microservices',
+      technologies: ['Grafana', 'Prometheus', 'ELK Stack', 'Node.js'],
+      imageUrl: '/placeholder.svg',
+      githubUrl: 'https://github.com',
+    },
   ];
 
   const scrollToProjects = () => {
@@ -50,6 +69,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <Header />
       <MeteorShower />
       
       {/* Hero Section */}
@@ -118,10 +138,14 @@ const Index = () => {
       <section id="projects" className="py-20 px-4 relative z-10">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
-            ))}
+          <div className="overflow-x-auto pb-8">
+            <div className="flex space-x-6 min-w-max px-4">
+              {projects.map((project) => (
+                <div key={project.title} className="w-[400px]">
+                  <ProjectCard {...project} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -165,6 +189,8 @@ const Index = () => {
           </motion.form>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
