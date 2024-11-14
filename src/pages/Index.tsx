@@ -2,6 +2,10 @@ import { motion } from 'framer-motion';
 import MeteorShower from '../components/MeteorShower';
 import SkillCard from '../components/SkillCard';
 import ProjectCard from '../components/ProjectCard';
+import TypedText from '../components/TypedText';
+import WolfLogo from '../components/WolfLogo';
+import { Button } from '@/components/ui/button';
+import { ChevronDown } from 'lucide-react';
 
 const Index = () => {
   const skills = [
@@ -39,6 +43,11 @@ const Index = () => {
     },
   ];
 
+  const scrollToProjects = () => {
+    const projectsSection = document.querySelector('#projects');
+    projectsSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       <MeteorShower />
@@ -48,30 +57,53 @@ const Index = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="min-h-screen flex items-center justify-center relative z-10"
+        className="min-h-screen flex flex-col items-center justify-center relative z-10"
       >
-        <div className="text-center">
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl md:text-6xl font-bold mb-4"
+        <WolfLogo />
+        <motion.h2
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-2xl md:text-3xl font-medium mb-4 text-blue-400"
+        >
+          Hello, I'm Avtomat
+        </motion.h2>
+        <motion.h1
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-4xl md:text-6xl font-bold mb-4"
+        >
+          <TypedText 
+            strings={['Backend Engineer', 'DevOps Engineer', 'System Architect']} 
+            className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
+          />
+        </motion.h1>
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="text-xl text-gray-400 mb-8 animate-pulse"
+        >
+          Specializing in Laravel, CI/CD, and DevOps
+        </motion.p>
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
+          <Button
+            onClick={scrollToProjects}
+            className="group bg-blue-500 hover:bg-blue-600 transition-all duration-300"
           >
-            Backend Engineer
-          </motion.h1>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-xl text-gray-400 mb-8"
-          >
-            Specializing in Laravel, CI/CD, and DevOps
-          </motion.p>
-        </div>
+            View My Projects
+            <ChevronDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+          </Button>
+        </motion.div>
       </motion.section>
 
       {/* Skills Section */}
-      <section className="py-20 px-4 relative z-10">
+      <section id="skills" className="py-20 px-4 relative z-10">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Skills</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -83,7 +115,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 px-4 relative z-10">
+      <section id="projects" className="py-20 px-4 relative z-10">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -95,7 +127,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 px-4 relative z-10">
+      <section id="contact" className="py-20 px-4 relative z-10">
         <div className="container mx-auto max-w-2xl">
           <h2 className="text-3xl font-bold text-center mb-12">Get in Touch</h2>
           <motion.form
